@@ -108,4 +108,16 @@ public class TicketMachine
         amountLeftToPay = price - balance;
         return amountLeftToPay;
     }
+    /**
+     * Método que vacía la máquina de monedas y devuelve la cantidad de dinero que habia
+     */
+    
+    public int emtpyMachine()
+    {
+        int totalAcumulado;
+        totalAcumulado = total;
+        total = 0;
+        return totalAcumulado;
+    }
+    
 }
