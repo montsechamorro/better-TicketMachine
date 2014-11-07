@@ -56,7 +56,7 @@ public class TicketMachine
         }
         else {
             System.out.println("Use a positive amount rather than: " +
-                               amount);
+                amount);
         }
     }
 
@@ -83,8 +83,8 @@ public class TicketMachine
         }
         else {
             System.out.println("You must insert at least: " +
-                               (price - balance) + " more cents.");
-                    
+                (price - balance) + " more cents.");
+
         }
     }
 
@@ -98,5 +98,14 @@ public class TicketMachine
         amountToRefund = balance;
         balance = 0;
         return amountToRefund;
+    }
+    /**
+     * Devuelve el dinero que hace falta meter para poder imprimir un ticket
+     */
+    public int getAmountLeftToPay()
+    {
+        int amountLeftToPay;
+        amountLeftToPay = price - balance;
+        return amountLeftToPay;
     }
 }
