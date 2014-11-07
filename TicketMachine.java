@@ -82,9 +82,9 @@ public class TicketMachine
             balance = balance - price;
         }
         else {
-            System.out.println("You must insert at least: " +
-                (price - balance) + " more cents.");
-
+            int amountLeftToPay;
+            amountLeftToPay = price - balance;
+            System.out.println("You must insert at least: " + amountLeftToPay + " more cents.");
         }
     }
 
