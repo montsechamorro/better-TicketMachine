@@ -17,6 +17,14 @@ public class TicketMachine
     private int balance;
     // The total amount of money collected by this machine.
     private int total;
+    //El precio del billete con descuento del 10%
+    private int discountTicket;
+    //El descuento que se le aplica al precio del billete
+    private int discount;
+    
+   
+    
+    
 
     /**
      * Create a machine that issues tickets of the given price.
@@ -24,13 +32,25 @@ public class TicketMachine
     public TicketMachine(int cost)
     {
         price = cost;
+        discountTicket = (cost -  (cost * discount/100));     
+        discount = 10;
         balance = 0;
         total = 0;
+       
     }
+    
+    /**
+     * Creado metodo para que aplique el descuento al precio
+     */ 
+    public int getDiscountTicket()
+  {
+      return discountTicket;
+    }
+        
 
     /**
      * @Return The price of a ticket.
-     */
+     
     public int getPrice()
     {
         return price;
