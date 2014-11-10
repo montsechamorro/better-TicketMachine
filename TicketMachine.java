@@ -17,8 +17,10 @@ public class TicketMachine
     private int balance;
     // The total amount of money collected by this machine.
     private int total;
-    //El precio del billete con descuento del 10%
-    private int discountTicket;
+    //El precio del billete con descuento 
+    private int ticketWithDiscount;
+    //El atributo donde se guarda si la máquina es con o sin descuento
+    private boolean discountRate;
     
    
     
@@ -27,41 +29,47 @@ public class TicketMachine
     /**
      * Create a machine that issues tickets of the given price.
      */
-    public TicketMachine(int cost)
+    public TicketMachine(int cost, int percentageDiscount, boolean type)
     {
         price = cost;
-        discountTicket = (cost -  (cost * 10/100));     
+        ticketWithDiscount = (price -  (price * percentageDiscount / 100));     
         balance = 0;
         total = 0;
+        discountRate = type;
        
     }
     
     /**
      * Creado metodo para que aplique el descuento al precio
      */ 
-    public int getDiscountTicket()
+    public int getTicketWithDiscount()
   {
-      return discountTicket;
+      return ticketWithDiscount;
     }
-    public void printDiscountTicket()
+    public void printTicketWithDiscount()
    {
-         if(balance >= discountTicket) {
+         if(balance >= ticketWithDiscount && discountRate == true)
+         {
             // Simulate the printing of a ticket.
             System.out.println("##################");
             System.out.println("# The BlueJ Line");
             System.out.println("# Ticket");
-            System.out.println("# " + discountTicket + " cents.");
+            System.out.println("# " + ticketWithDiscount + " cents.");
             System.out.println("##################");
             System.out.println();
 
             // Update the total collected with the price.
-            total = total + discountTicket;
+            total = total + ticketWithDiscount;
             // Reduce the balance by the prince.
-            balance = balance - discountTicket;
+            balance = balance - ticketWithDiscount;
         }
+        else if (balance >= ticketWithDiscount && discountRate == false)
+        {
+             System.out.println("Esta máquina no imprime tickets con descuento");
+            }
         else {
             int amountLeftToPay;
-            amountLeftToPay = discountTicket - balance;
+            amountLeftToPay = ticketWithDiscount - balance;
             System.out.println("You must insert at least: " + amountLeftToPay + " more cents.");
         }
     }
@@ -71,7 +79,7 @@ public class TicketMachine
      * @Return The price of a ticket.
      
     public int getPrice()
-    {
+    {              
         return price;
     }
 
@@ -131,7 +139,7 @@ public class TicketMachine
      * Return the money in the balance.
      * The balance is cleared.
      */
-    public int refundBalance()
+    public int refundBalance()   
     {
         int amountToRefund;
         amountToRefund = balance;
