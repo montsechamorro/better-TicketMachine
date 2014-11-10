@@ -19,8 +19,6 @@ public class TicketMachine
     private int total;
     //El precio del billete con descuento del 10%
     private int discountTicket;
-    //El descuento que se le aplica al precio del billete
-    private int discount;
     
    
     
@@ -32,8 +30,7 @@ public class TicketMachine
     public TicketMachine(int cost)
     {
         price = cost;
-        discountTicket = (cost -  (cost * discount/100));     
-        discount = 10;
+        discountTicket = (cost -  (cost * 10/100));     
         balance = 0;
         total = 0;
        
@@ -45,6 +42,28 @@ public class TicketMachine
     public int getDiscountTicket()
   {
       return discountTicket;
+    }
+    public void printDiscountTicket()
+   {
+         if(balance >= discountTicket) {
+            // Simulate the printing of a ticket.
+            System.out.println("##################");
+            System.out.println("# The BlueJ Line");
+            System.out.println("# Ticket");
+            System.out.println("# " + discountTicket + " cents.");
+            System.out.println("##################");
+            System.out.println();
+
+            // Update the total collected with the price.
+            total = total + discountTicket;
+            // Reduce the balance by the prince.
+            balance = balance - discountTicket;
+        }
+        else {
+            int amountLeftToPay;
+            amountLeftToPay = discountTicket - balance;
+            System.out.println("You must insert at least: " + amountLeftToPay + " more cents.");
+        }
     }
         
 
